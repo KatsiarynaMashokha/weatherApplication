@@ -1,0 +1,37 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import WeatherList from './weatherList';
+
+class WeatherInfo extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      forecast : []
+    };
+
+    this.loadWeather = this.loadWeather.bind(this);
+  }
+
+  loadWeather() {
+    let mocData = ['Minnesota today 31 snow', 'California today 65 sunny'];
+    this.setState({
+        forecast: mocData
+      });
+
+      let sampleResponse = {
+        "coord":{"lon":-122.08,"lat":37.39},"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10n"}],"base":"stations","main":{"temp":277.14,"pressure":1025,"humidity":86,"temp_min":275.15,"temp_max":279.15},"visibility":16093,"wind":{"speed":1.67,"deg":53.0005},"clouds":{"all":1},"dt":1485788160,"sys":{"type":1,"id":471,"message":0.0116,"country":"US","sunrise":1485789140,"sunset":1485826300},"id":5375480,"name":"Mountain View","cod":200
+      };
+  }
+
+  render() {
+    return (
+      <div>
+        <button className="getWeatherButton" onClick = {this.loadWeather}>Get Weather</button>
+        <WeatherList weathers={this.state.forecast}/>
+      </div>
+    );
+  }
+}
+
+export default WeatherInfo;
